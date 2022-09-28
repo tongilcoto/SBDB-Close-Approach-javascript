@@ -1,0 +1,129 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "test-nasa's-jpl-api;correct-schema-for-dist-max-filter-with-limited-data-by-min-date",
+        "keyword": "Scenario Outline",
+        "line": 2,
+        "name": "Correct Schema for dist-max filter with limited data by min-date",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 2991653
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 3,
+            "name": "I want to know NEO close approaches data within \"3\" \"lunar\" units since \"2020-01-01\"",
+            "match": {
+              "location": "tests/steps.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 970583
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 4,
+            "name": "I send the NASA's JPL API",
+            "match": {
+              "location": "tests/steps.js:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 17845781499
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 5,
+            "name": "I receive an OK response with defined \"mandatory with data\" response scheme",
+            "match": {
+              "location": "tests/steps.js:26"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 42735981
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "test-nasa's-jpl-api;correct-schema-for-dist-max-filter-with-limited-data-by-min-date",
+        "keyword": "Scenario Outline",
+        "line": 2,
+        "name": "Correct Schema for dist-max filter with limited data by min-date",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1003611
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 3,
+            "name": "I want to know NEO close approaches data within \"3\" \"astronomical\" units since \"2020-01-01\"",
+            "match": {
+              "location": "tests/steps.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 329358
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 4,
+            "name": "I send the NASA's JPL API",
+            "match": {
+              "location": "tests/steps.js:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 26837010382
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 5,
+            "name": "I receive an OK response with defined \"mandatory with data\" response scheme",
+            "match": {
+              "location": "tests/steps.js:26"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 128706295
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "test-nasa's-jpl-api",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Test NASA's JPL API",
+    "tags": [],
+    "uri": "features/test.feature"
+  }
+]

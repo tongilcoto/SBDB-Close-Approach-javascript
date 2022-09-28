@@ -1,0 +1,9 @@
+services:
+  automation-framework:
+    build:
+      context: .
+    volumes:
+      - type: bind
+        source: ${PWD}/reports
+        target: /app/reports
+
