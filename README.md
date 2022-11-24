@@ -106,4 +106,26 @@ Cucumber framework's JSON official report. It can be uploaded to some test manag
 
 
 
+HINTS:
+
+- .vscode/launch.json
+
+'''
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "All features",
+            "program": "${workspaceFolder}/node_modules/.bin/cucumber-js",
+            "args": ["--require", "tests", "--publish-quiet"]
+        }
+    ]
+}
+'''
+
 
