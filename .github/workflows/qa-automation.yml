@@ -1,0 +1,56 @@
+name: QA Automation
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      TEST_PLAN_KEY:
+        description: 'Jira Issue Id or Filter Id hosting the features to be tested'
+        required: true
+        default: 'BGHA-15'
+      IS_FEATURE:
+        description: 'Tells if the Jira Issue is a User Story, if so, the generated execution will be created as a sub test execution in Jira'
+        required: true
+        type: choice
+        default: 'N'
+        options:
+        - 'Y'
+        - 'N'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      XRAY_CLIENT_ID: ${{ secrets.XRAY_CLIENT_ID }}
+      XRAY_CLIENT_SECRET: ${{ secrets.XRAY_CLIENT_SECRET }}
+      JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+      GOREST_API_TOKEN: ${{ secrets.GOREST_API_TOKEN }}
+      TEST_PLAN_KEY: ${{ inputs.TEST_PLAN_KEY }}
+      IS_FEATURE: ${{ inputs.IS_FEATURE }}
+    steps:
+    - name: Checkout code
+      id: checkout
+      uses: actions/checkout@v3
+    - name: Set up Node
+      uses: actions/setup-node@v3
+      id: setup
+      with:
+        node-version: 18
+    - name: Deploy Packages
+      id: deploy
+      run: npm ci
+    - name: Download Features
+      id: features
+      run: |
+        ./xray-api-download-features.sh $TEST_PLAN_KEY
+    - name: Run framework with report
+      id: execution
+      run: |
+        mkdir reports
+        npm run report
+    - name: Upload results to Xray
+      if: always()
+      run: |
+        export ARE_TESTS_FAILED="N"
+        if [[ ${{ steps.execution.outcome }} == 'failure' ]]; then
+          export ARE_TESTS_FAILED="Y"
+        fi
+        ./xray-api-upload-cucumber-report.sh $TEST_PLAN_KEY $IS_FEATURE
